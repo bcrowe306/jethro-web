@@ -36,7 +36,12 @@
                                         <v-text-field :rules="emailRules" required v-model="email" placeholder="johndoe@example.com" type="email" label="Email Address" variant="outlined"></v-text-field>
 
                                         <!-- Password -->
-                                        <v-text-field v-model="password" required type="password" label="Password" variant="outlined"></v-text-field>
+                                        <v-text-field
+                                            :append-inner-icon="passwordShow ? 'mdi-eye' : 'mdi-eye-off'" 
+                                            v-model="password" required 
+                                            :type="passwordShow ? 'text' : 'password'"
+                                            @click:append-inner="passwordShow = !passwordShow"
+                                            label="Password" variant="outlined"></v-text-field>
                                         
                                         <v-row no-gutters align="center">
                                             <v-col cols="12" v-if="errorMessage">
@@ -68,7 +73,7 @@ import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
     const store = useStore()
     var valid = true
-
+    var passwordShow = ref(false)
     var errorMessage = ref('')
     const router = useRouter()
     const loginForm = ref(null)

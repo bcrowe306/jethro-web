@@ -70,6 +70,42 @@ const actions = {
       );
     }
   },
+  updateName: async ({ commit } , name) => {
+    try {
+      var updatedAccount = await account_api.updateName(name)
+      commit('setAccount', updatedAccount)
+
+    } catch (error) {
+      console.log('Error updating account name.')
+      commit(
+        "setError",
+        {
+          show: true,
+          message: error.message,
+          color: "red",
+        },
+        { root: true }
+      );
+    }
+  },
+  updateEmail: async ({ commit } , {email, password}) => {
+    try {
+      var updatedAccount = await account_api.updateEmail(email, password)
+      commit('setAccount', updatedAccount)
+
+    } catch (error) {
+      console.log(error.message)
+      commit(
+        "setError",
+        {
+          show: true,
+          message: error.message,
+          color: "red",
+        },
+        { root: true }
+      );
+    }
+  }
 };
 
 const getters = {
