@@ -1,4 +1,4 @@
-# default
+# Jethro Web
 
 ## Project setup
 
